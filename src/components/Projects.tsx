@@ -2,16 +2,22 @@ import { projects } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Github, ExternalLink, Star } from "lucide-react";
-import ecommerceImg from "@/assets/project-ecommerce.jpg";
-import apiImg from "@/assets/project-api.jpg";
-import weatherImg from "@/assets/project-weather.jpg";
-import portfolioImg from "@/assets/project-portfolio.jpg";
+import winnerWayFrontendImg from "@/assets/winner-way-frontend.jpg";
+import winnerWayBackendImg from "@/assets/winner-way-backend.jpg";
+import interactiveSoccerImg from "@/assets/interactive-web-soccer.jpg";
+import xgModelImg from "@/assets/xg-model.jpg";
+import matchReportImg from "@/assets/match-report.jpg";
+import portfolioStreamlitImg from "@/assets/portfolio-streamlit.jpg";
+import datathonCoppelImg from "@/assets/datathon-coppel.jpg";
 
 const projectImages = {
-  1: ecommerceImg,
-  2: apiImg,
-  3: weatherImg,
-  4: portfolioImg
+  1: winnerWayFrontendImg,
+  2: winnerWayBackendImg,
+  3: interactiveSoccerImg,
+  4: xgModelImg,
+  5: matchReportImg,
+  6: portfolioStreamlitImg,
+  7: datathonCoppelImg
 };
 
 const Projects = () => {
@@ -23,15 +29,15 @@ const Projects = () => {
             <span className="text-gradient">Proyectos</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Una selección de mis trabajos más recientes y destacados
+            Desarrollo web moderno y análisis de datos deportivos
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div 
               key={project.id} 
-              className={`project-card animate-scale-in ${project.featured ? 'md:col-span-2 lg:col-span-1' : ''}`}
+              className={`project-card animate-scale-in ${project.featured ? 'md:col-span-2 xl:col-span-2' : ''}`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {project.featured && (

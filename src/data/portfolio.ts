@@ -1,7 +1,8 @@
 export const personalInfo = {
   name: "Emilio Zavala",
-  title: "Estudiante de Ing. en Sistemas Computacionales",
-  description: "Desarrollador Full Stack apasionado por crear soluciones tecnológicas innovadoras y eficientes.",
+  title: "Ing. en Sistemas Computacionales",
+  description: "Construyo productos web y apps de analítica deportiva.",
+  about: "Estudiante apasionado por el desarrollo de productos data-driven con un enfoque especial en el análisis deportivo. Combino tecnologías web modernas con ciencia de datos para crear soluciones innovadoras.",
   email: "emilio.zavala@email.com",
   github: "https://github.com/emiliozavala",
   linkedin: "https://linkedin.com/in/emiliozavala",
@@ -10,80 +11,81 @@ export const personalInfo = {
 };
 
 export const skills = [
-  {
-    category: "Frontend",
-    items: [
-      { name: "TypeScript", level: 90 },
-      { name: "React", level: 85 },
-      { name: "Next.js", level: 80 },
-      { name: "Tailwind CSS", level: 88 }
-    ]
-  },
-  {
-    category: "Backend",
-    items: [
-      { name: "Python", level: 85 },
-      { name: "Flask", level: 80 },
-      { name: "Node.js", level: 75 }
-    ]
-  },
-  {
-    category: "Database",
-    items: [
-      { name: "SQL", level: 85 },
-      { name: "Supabase", level: 82 },
-      { name: "PostgreSQL", level: 80 }
-    ]
-  },
-  {
-    category: "DevOps",
-    items: [
-      { name: "Docker", level: 78 },
-      { name: "Git", level: 90 },
-      { name: "Linux", level: 75 }
-    ]
-  }
+  "TypeScript", "React", "Next.js", "Tailwind CSS", "shadcn/ui",
+  "Python", "Flask", "Streamlit", "Supabase", "SQL", 
+  "Docker", "NGINX", "Web Scraping", "Matplotlib", "Jupyter",
+  "Machine Learning", "Logistic Regression", "xG Models"
 ];
 
 export const projects = [
   {
     id: 1,
-    title: "E-commerce Dashboard",
-    description: "Dashboard administrativo para e-commerce con análisis de ventas, gestión de productos y reportes en tiempo real.",
-    tech: ["React", "TypeScript", "Supabase", "Tailwind"],
-    github: "https://github.com/emiliozavala/ecommerce-dashboard",
-    demo: "https://ecommerce-dashboard-demo.vercel.app",
-    image: "/projects/ecommerce-dashboard.jpg",
+    title: "Winner Way – Frontend",
+    description: "Plataforma web para análisis de tenis con interfaz moderna y dashboard interactivo para visualización de datos deportivos.",
+    tech: ["React", "TypeScript", "Vite", "shadcn/ui", "Tailwind", "Supabase"],
+    github: "https://github.com/emiliozavala/winner-way-frontend",
+    demo: "https://winner-way.vercel.app",
+    image: "/projects/winner-way-frontend.jpg",
     featured: true
   },
   {
     id: 2,
-    title: "Task Management API",
-    description: "API RESTful para gestión de tareas con autenticación JWT, filtros avanzados y documentación Swagger.",
-    tech: ["Python", "Flask", "PostgreSQL", "Docker"],
-    github: "https://github.com/emiliozavala/task-api",
-    demo: "https://task-api-docs.herokuapp.com",
-    image: "/projects/task-api.jpg",
+    title: "Winner Way – Backend (Tennis AI)",
+    description: "Sistema de IA para análisis de tenis con detección de keypoints, DTW, detección de frames de impacto y overlay de datos.",
+    tech: ["Python", "Flask", "OpenCV", "DTW", "ML"],
+    github: "https://github.com/emiliozavala/winner-way-backend",
+    demo: "https://github.com/emiliozavala/winner-way-backend#demo",
+    image: "/projects/winner-way-backend.jpg",
     featured: true
   },
   {
     id: 3,
-    title: "Weather App",
-    description: "Aplicación del clima con pronósticos de 7 días, geolocalización y diseño responsive.",
-    tech: ["React", "TypeScript", "OpenWeather API"],
-    github: "https://github.com/emiliozavala/weather-app",
-    demo: "https://weather-app-ez.netlify.app",
-    image: "/projects/weather-app.jpg",
-    featured: false
+    title: "Interactive-Web (Soccer)",
+    description: "Dashboard interactivo de fútbol con scraping de SofaScore/Fotmob y visualizaciones de tiros, radar y recap de partidos.",
+    tech: ["Streamlit", "Python", "Web Scraping", "Pandas", "Plotly"],
+    github: "https://github.com/emiliozavala/interactive-web-soccer",
+    demo: "https://interactive-web-soccer.streamlit.app",
+    image: "/projects/interactive-web-soccer.jpg",
+    featured: true
   },
   {
     id: 4,
-    title: "Portfolio Website",
-    description: "Portafolio personal desarrollado con React, TypeScript y animaciones fluidas.",
-    tech: ["React", "TypeScript", "Tailwind", "Framer Motion"],
-    github: "https://github.com/emiliozavala/portfolio",
-    demo: "https://emiliozavala.dev",
-    image: "/projects/portfolio.jpg",
+    title: "xG-Model (World Cup 2022)",
+    description: "Modelo de Expected Goals usando datos de StatsBomb y mpsoccer con regresión logística y app Streamlit.",
+    tech: ["Python", "Jupyter", "Logistic Regression", "StatsBomb", "mpsoccer", "Streamlit"],
+    github: "https://github.com/emiliozavala/xg-model-worldcup",
+    demo: "https://xg-model-worldcup.streamlit.app",
+    image: "/projects/xg-model.jpg",
+    featured: false
+  },
+  {
+    id: 5,
+    title: "Match-Report-Analysis",
+    description: "Dashboards de análisis de partidos con scraping, shotmaps, heatmaps, análisis de momentum y 'Player of the Match'.",
+    tech: ["Python", "Streamlit", "Web Scraping", "Matplotlib", "Seaborn"],
+    github: "https://github.com/emiliozavala/match-report-analysis",
+    demo: "https://match-report-analysis.streamlit.app",
+    image: "/projects/match-report.jpg",
+    featured: false
+  },
+  {
+    id: 6,
+    title: "Portfolio-Web (Previo)",
+    description: "Portafolio anterior desarrollado en Streamlit para mostrar proyectos de visualización de datos y web scraping.",
+    tech: ["Streamlit", "Python", "Data Viz", "Web Scraping"],
+    github: "https://github.com/emiliozavala/portfolio-streamlit",
+    demo: "https://emilio-zavala-portfolio.streamlit.app",
+    image: "/projects/portfolio-streamlit.jpg",
+    featured: false
+  },
+  {
+    id: 7,
+    title: "Datathon Coppel",
+    description: "Análisis descriptivo y exploratorio de datos (EDA) para competencia Datathon Coppel con insights de negocio.",
+    tech: ["Python", "Pandas", "Matplotlib", "Seaborn", "Jupyter"],
+    github: "https://github.com/emiliozavala/datathon-coppel",
+    demo: "https://github.com/emiliozavala/datathon-coppel/blob/main/analysis.ipynb",
+    image: "/projects/datathon-coppel.jpg",
     featured: false
   }
 ];

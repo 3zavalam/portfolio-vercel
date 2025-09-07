@@ -10,12 +10,13 @@ const WebsLanding = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Opcional: verificar parámetro de acceso
+    // Verificación opcional del parámetro de acceso
     const accessKey = searchParams.get("k");
-    // Si quieres implementar la verificación, descomenta:
-    // if (accessKey !== "ok") {
-    //   return <NotFound />;
-    // }
+    if (accessKey !== "ok") {
+      // Si quieres activar la verificación, devolver 404
+      // window.location.href = '/404';
+      // return;
+    }
     
     setIsVisible(true);
   }, [searchParams]);
