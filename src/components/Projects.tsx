@@ -1,7 +1,7 @@
 import { projects } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Github, ExternalLink, Star } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 import winnerWayFrontendImg from "@/assets/winner-way-frontend.jpg";
 import winnerWayBackendImg from "@/assets/winner-way-backend.jpg";
 import interactiveSoccerImg from "@/assets/interactive-web-soccer.jpg";
@@ -12,12 +12,11 @@ import datathonCoppelImg from "@/assets/datathon-coppel.jpg";
 
 const projectImages = {
   1: winnerWayFrontendImg,
-  2: winnerWayBackendImg,
-  3: interactiveSoccerImg,
-  4: xgModelImg,
-  5: matchReportImg,
-  6: portfolioStreamlitImg,
-  7: datathonCoppelImg
+  2: interactiveSoccerImg,
+  3: xgModelImg,
+  4: matchReportImg,
+  5: portfolioStreamlitImg,
+  6: datathonCoppelImg
 };
 
 const Projects = () => {
@@ -33,63 +32,54 @@ const Projects = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <div 
               key={project.id} 
-              className={`project-card animate-scale-in ${project.featured ? 'md:col-span-2 xl:col-span-2' : ''}`}
+              className="project-card animate-scale-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {project.featured && (
-                <div className="flex items-center gap-2 mb-4">
-                  <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                  <span className="text-sm font-medium text-yellow-600 dark:text-yellow-400">
-                    Proyecto Destacado
-                  </span>
-                </div>
-              )}
-              
-              <div className="mb-6">
+              <div className="mb-4">
                 <img 
                   src={projectImages[project.id as keyof typeof projectImages]} 
                   alt={`Vista previa de ${project.title}`}
-                  className="w-full h-48 object-cover rounded-lg"
+                  className="w-full aspect-video object-cover rounded-lg"
                 />
               </div>
               
-              <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-              <p className="text-muted-foreground mb-4 leading-relaxed">
+              <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
+              <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-2">
                 {project.description}
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-1.5 mb-4">
                 {project.tech.map((tech) => (
-                  <Badge key={tech} variant="secondary" className="text-xs">
+                  <Badge key={tech} variant="secondary" className="text-xs px-2 py-0.5">
                     {tech}
                   </Badge>
                 ))}
               </div>
               
-              <div className="flex gap-3 pt-4 border-t border-border">
+              <div className="flex gap-2 pt-3 border-t border-border">
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-1.5 flex-1"
                   asChild
                 >
                   <a href={project.github} target="_blank" rel="noopener noreferrer">
-                    <Github className="w-4 h-4" />
+                    <Github className="w-3.5 h-3.5" />
                     Código
                   </a>
                 </Button>
                 <Button 
                   size="sm" 
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-1.5 flex-1"
                   asChild
                 >
                   <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="w-4 h-4" />
-                    Ver Demo
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    Demo
                   </a>
                 </Button>
               </div>
