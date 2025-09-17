@@ -2,14 +2,6 @@ import { projects } from "@/data/portfolio";
 import { Github } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const projectImages = {
-  1: "/projects/dashboard/dashboard.png",
-  2: "/projects/xg-model/allShots.png", 
-  3: "/projects/interactive-web/interactive-web-soccer.jpg",
-  4: "/winner-way-frontend.jpg",
-  5: "/portfolio-streamlit.jpg"
-};
-
 const Projects = () => {
   return (
     <section id="projects" className="py-20">
@@ -19,20 +11,22 @@ const Projects = () => {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
+          {projects.map((project) => {
+            const imageSrc = project.image.startsWith("/")
+              ? project.image
+              : `/${project.image}`;
+
+            return (
             <div key={project.id} className="project-card group">
               <Link to={`/project/${project.id}`}>
                 <div className="mb-4">
                   <img 
-                    src={projectImages[project.id as keyof typeof projectImages]} 
+                    src={imageSrc} 
                     alt={project.title}
                     className="w-full aspect-video object-cover rounded-lg group-hover:opacity-80 transition-opacity"
                     onError={(e) => {
                       console.error(`Failed to load image for project ${project.id}:`, e);
                       e.currentTarget.style.display = 'none';
-                    }}
-                    onLoad={() => {
-                      console.log(`Successfully loaded image for project ${project.id}`);
                     }}
                   />
                 </div>
@@ -70,7 +64,8 @@ const Projects = () => {
                 )}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

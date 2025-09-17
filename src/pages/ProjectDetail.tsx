@@ -2,12 +2,31 @@ import { useParams, Link } from "react-router-dom";
 import { projects } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Github } from "lucide-react";
-import { useState } from "react";
 
+type ProjectVideoSource = {
+  src: string;
+  type?: string;
+};
+
+type ProjectVideo = {
+  src?: string;
+  type?: string;
+  sources?: ProjectVideoSource[];
+  title?: string;
+  description?: string;
+  poster?: string;
+};
 
 const ProjectDetail = () => {
   const { id } = useParams();
   const project = projects.find(p => p.id === parseInt(id || '0'));
+  const projectVideos = Array.isArray((project as { videos?: ProjectVideo[] } | undefined)?.videos)
+    ? ((project as { videos?: ProjectVideo[] }).videos as ProjectVideo[])
+    : [];
+  const hasMultipleVideos = projectVideos.length > 1;
+  const projectVideosWrapperClass = hasMultipleVideos
+    ? "grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto"
+    : "grid grid-cols-1 gap-6 max-w-3xl mx-auto justify-items-center";
 
   if (!project) {
     return (
@@ -86,43 +105,49 @@ const ProjectDetail = () => {
         </div>
 
         {/* Project Videos (if available) */}
-        {(project as any).videos && (
+        {projectVideos.length > 0 && (
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6 text-center">Project Examples</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              
-              {/* Video 1: Stroke Detection */}
-              <div className="bg-white/5 border border-white/10 rounded-lg p-4">
-                <video 
-                  controls
-                  className="w-full rounded-lg"
-                  style={{ maxHeight: '300px' }}
+            <h2 className="text-2xl font-bold text-white mb-6 text-center">Project Media</h2>
+            <div className={projectVideosWrapperClass}>
+              {projectVideos.map((video, index) => (
+                <div
+                  key={`${project.id}-video-${index}`}
+                  className={`bg-white/5 border border-white/10 rounded-lg p-4 w-full ${hasMultipleVideos ? "" : "max-w-3xl"}`}
                 >
-                  <source src="/winnerway-detect-strokes.mov" type="video/quicktime" />
-                  <source src="/winnerway-detect-strokes.mov" type="video/mp4" />
-                </video>
-                <div className="mt-3">
-                  <h3 className="text-white font-semibold">Stroke Detection</h3>
-                  <p className="text-gray-400 text-sm">AI-powered tennis stroke recognition and analysis</p>
+                  <video
+                    controls
+                    className="w-full rounded-lg"
+                    style={{ maxHeight: "300px" }}
+                    poster={video.poster}
+                  >
+                    {(video.sources && video.sources.length > 0)
+                      ? video.sources.map((source, sourceIndex) => (
+                          <source
+                            key={`${project.id}-video-${index}-source-${sourceIndex}`}
+                            src={source.src}
+                            type={source.type || video.type || "video/mp4"}
+                          />
+                        ))
+                      : video.src && (
+                          <source
+                            src={video.src}
+                            type={video.type || "video/mp4"}
+                          />
+                        )
+                    }
+                  </video>
+                  {(video.title || video.description) && (
+                    <div className="mt-3">
+                      {video.title && (
+                        <h3 className="text-white font-semibold">{video.title}</h3>
+                      )}
+                      {video.description && (
+                        <p className="text-gray-400 text-sm">{video.description}</p>
+                      )}
+                    </div>
+                  )}
                 </div>
-              </div>
-
-              {/* Video 2: AI Coach */}
-              <div className="bg-white/5 border border-white/10 rounded-lg p-4">
-                <video 
-                  controls
-                  className="w-full rounded-lg"
-                  style={{ maxHeight: '300px' }}
-                >
-                  <source src="/winnerway-ai-coach.mov" type="video/quicktime" />
-                  <source src="/winnerway-ai-coach.mov" type="video/mp4" />
-                </video>
-                <div className="mt-3">
-                  <h3 className="text-white font-semibold">AI Coach Demo</h3>
-                  <p className="text-gray-400 text-sm">Complete platform walkthrough showing AI coaching functionality</p>
-                </div>
-              </div>
-
+              ))}
             </div>
           </div>
         )}
@@ -166,18 +191,24 @@ const ProjectDetail = () => {
         <div className="mt-20 text-center">
           <h3 className="text-2xl font-bold text-white mb-8">Other Projects</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {projects.filter(p => p.id !== project.id).map((otherProject) => (
-              <Link key={otherProject.id} to={`/project/${otherProject.id}`}>
-                <div className="bg-white/5 border border-white/10 rounded-lg p-4 hover:border-white/30 hover:bg-white/10 transition-all">
-                  <img 
-                    src={`/${otherProject.image}`} 
-                    alt={otherProject.title}
-                    className="w-full aspect-video object-cover rounded mb-3"
-                  />
-                  <h4 className="text-white font-semibold text-sm">{otherProject.title}</h4>
-                </div>
-              </Link>
-            ))}
+            {projects.filter(p => p.id !== project.id).map((otherProject) => {
+              const otherImageSrc = otherProject.image.startsWith("/")
+                ? otherProject.image
+                : `/${otherProject.image}`;
+
+              return (
+                <Link key={otherProject.id} to={`/project/${otherProject.id}`}>
+                  <div className="bg-white/5 border border-white/10 rounded-lg p-4 hover:border-white/30 hover:bg-white/10 transition-all">
+                    <img 
+                      src={otherImageSrc}
+                      alt={otherProject.title}
+                      className="w-full aspect-video object-cover rounded mb-3"
+                    />
+                    <h4 className="text-white font-semibold text-sm">{otherProject.title}</h4>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
