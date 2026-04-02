@@ -1,6 +1,6 @@
 import { personalInfo } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Download } from "lucide-react";
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -13,43 +13,51 @@ const Hero = () => {
         <h1 className="text-6xl md:text-8xl font-bold mb-8 text-white">
           {personalInfo.name}
         </h1>
-        
-        <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto">
-          Building web products and sports analytics apps
-        </p>
-        
+
         <div className="flex justify-center gap-6 mb-12">
-          <a 
-            href={personalInfo.github} 
-            target="_blank" 
+          <a
+            href={personalInfo.github}
+            target="_blank"
             rel="noopener noreferrer"
             className="p-4 rounded-full border border-white/20 hover:border-white/40 transition-all duration-300 hover:bg-white/5"
           >
             <Github className="w-6 h-6 text-white" />
           </a>
-          <a 
-            href={personalInfo.linkedin} 
-            target="_blank" 
+          <a
+            href={personalInfo.linkedin}
+            target="_blank"
             rel="noopener noreferrer"
             className="p-4 rounded-full border border-white/20 hover:border-white/40 transition-all duration-300 hover:bg-white/5"
           >
             <Linkedin className="w-6 h-6 text-white" />
           </a>
-          <a 
+          <a
             href={`mailto:${personalInfo.email}`}
             className="p-4 rounded-full border border-white/20 hover:border-white/40 transition-all duration-300 hover:bg-white/5"
           >
             <Mail className="w-6 h-6 text-white" />
           </a>
         </div>
-        
-        <Button 
-          size="lg" 
-          className="bg-white text-black hover:bg-gray-200 px-8 py-3 text-lg"
-          onClick={() => scrollToSection('projects')}
-        >
-          View Projects
-        </Button>
+
+        <div className="flex justify-center gap-4 flex-wrap">
+          <Button
+            size="lg"
+            className="bg-white text-black hover:bg-gray-200 px-8 py-3 text-lg"
+            onClick={() => scrollToSection('projects')}
+          >
+            View Projects
+          </Button>
+          <a href={personalInfo.cv} download="Emilio_Zavala_CV_2026.pdf">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10 px-8 py-3 text-lg flex items-center gap-2"
+            >
+              <Download className="w-5 h-5" />
+              Download CV
+            </Button>
+          </a>
+        </div>
       </div>
     </section>
   );

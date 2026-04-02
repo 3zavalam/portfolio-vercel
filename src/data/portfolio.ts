@@ -3,25 +3,41 @@ import interactiveStreamlitVideo from "@/assets/web ligamx_mls video.mp4";
 import previousPortfolioCover from "@/assets/portfolio-streamlit.jpg";
 import previousPortfolioVideo from "@/assets/prueba portfolio web.mp4";
 import winnerWayCover from "@/assets/winner-way.png";
+import cv2026 from "@/assets/documents/cv2026.pdf";
 
 export const personalInfo = {
   name: "Emilio Zavala Miceli",
   title: "Computer Systems Engineering Student",
   description: "Data Analyst focused on sports analytics with Python, SQL, and Power BI expertise.",
-  about: "Hi! I'm Emilio Zavala, a Computer Systems Engineering student passionate about data analytics and sports. I love analyzing data, finding patterns, and turning numbers into actionable insights. Sports analytics is where my passion really shines - combining my love for athletics with data science to uncover performance trends and strategic opportunities. I work with Python, SQL, and Power BI to build meaningful visualizations and solve real-world problems. Whether it's predicting game outcomes or optimizing player performance, I'm always excited to dive into new datasets and discover what stories the data can tell.",
+  about: "Computer Systems Engineering student with hands-on experience building sports analytics tools and data pipelines. Developed an AI-powered tennis coaching platform and a soccer xG prediction model trained on real World Cup data (StatsBomb).",
   email: "3zavalam.tech@gmail.com",
   github: "https://github.com/3zavalam",
   linkedin: "https://www.linkedin.com/in/emilio-zavala-miceli-86595927b/",
   location: "México",
-  phone: "+52 123 456 7890"
+  cv: cv2026
 };
 
 export const skills = [
-  "Python", "Pandas", "NumPy", "Scikit-learn", "SQL", "Power BI",
-  "Matplotlib", "Streamlit", "Web Scraping", "BeautifulSoup",
-  "Machine Learning", "Logistic Regression", "Data Visualization",
-  "Sports Analytics", "Statistical Analysis", "Data Processing",
-  "TypeScript", "React", "Next.js", "Tailwind CSS"
+  {
+    category: "Languages",
+    items: ["Python", "SQL"]
+  },
+  {
+    category: "Data & AI",
+    items: ["Pandas", "NumPy", "Scikit-learn", "OpenCV"]
+  },
+  {
+    category: "Visualization",
+    items: ["Power BI", "Matplotlib", "Seaborn"]
+  },
+  {
+    category: "Development",
+    items: ["React", "Flask", "Streamlit", "Git", "GitHub"]
+  },
+  {
+    category: "Databases",
+    items: ["SQL", "Relational Databases"]
+  }
 ];
 
 export const projects = [
