@@ -8,14 +8,11 @@ const Contact = () => {
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-16">
           Contact
         </h2>
-        
+
         <div className="max-w-2xl mx-auto">
-          <p className="text-xl text-gray-300 mb-12">
-            Have a project in mind? Let's talk.
-          </p>
-          
+
           <div className="flex justify-center gap-8 mb-12">
-            <a 
+            <a
               href={`mailto:${personalInfo.email}`}
               className="flex flex-col items-center gap-3 p-6 rounded-lg border border-white/10 hover:border-white/30 transition-all hover:bg-white/5"
             >
@@ -23,10 +20,10 @@ const Contact = () => {
               <span className="text-white">Email</span>
               <span className="text-gray-400 text-sm">{personalInfo.email}</span>
             </a>
-            
-            <a 
-              href={personalInfo.github} 
-              target="_blank" 
+
+            <a
+              href={personalInfo.github}
+              target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center gap-3 p-6 rounded-lg border border-white/10 hover:border-white/30 transition-all hover:bg-white/5"
             >
@@ -34,10 +31,10 @@ const Contact = () => {
               <span className="text-white">GitHub</span>
               <span className="text-gray-400 text-sm">@emiliozavala</span>
             </a>
-            
-            <a 
-              href={personalInfo.linkedin} 
-              target="_blank" 
+
+            <a
+              href={personalInfo.linkedin}
+              target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center gap-3 p-6 rounded-lg border border-white/10 hover:border-white/30 transition-all hover:bg-white/5"
             >
