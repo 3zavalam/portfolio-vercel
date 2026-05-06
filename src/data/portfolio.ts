@@ -1,8 +1,8 @@
 import interactiveStreamlitCover from "@/assets/interactive-web-soccer.jpg";
 import interactiveStreamlitVideo from "@/assets/web ligamx_mls video.mp4";
-import previousPortfolioCover from "@/assets/portfolio-streamlit.jpg";
-import previousPortfolioVideo from "@/assets/prueba portfolio web.mp4";
 import winnerWayCover from "@/assets/winner-way.png";
+import reservacionesCover from "@/assets/projects/reservaciones/portada_reservaciones.png";
+import reservacionesVideo from "@/assets/projects/reservaciones/reservaciones.mp4";
 import cv2026 from "@/assets/documents/cv2026.pdf";
 
 export const personalInfo = {
@@ -116,23 +116,32 @@ export const projects = [
   },
   {
     id: 5,
-    title: "Previous Portfolio Web",
-    description: "Previous portfolio built with Streamlit showcasing data visualization projects and web scraping capabilities.",
-    tech: ["Streamlit", "Python", "Data Viz", "Web Scraping"],
-    github: "https://github.com/3zavalam/Portfolio-Web",
-    image: previousPortfolioCover,
+    title: "Reservaciones para Night Clubs",
+    description: "Sistema de reservaciones para antros y venues nocturnos con panel de administrador, app para clientes y vista para el cadenero.",
+    tech: ["FastAPI", "Python", "React", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "PostgreSQL"],
+    github: "https://github.com/3zavalam/reservaciones",
+    image: reservacionesCover,
     videos: [
       {
-        src: previousPortfolioVideo,
+        src: reservacionesVideo,
         type: "video/mp4",
-        title: "Streamlit Portfolio Overview",
-        description: "Walkthrough of the previous Streamlit portfolio, exploring sections and projects."
+        title: "Demo Reservaciones",
+        description: "Recorrido por las tres interfaces: app de clientes, panel de administrador y vista del cadenero."
       }
     ],
-    longDescription: "My previous portfolio website built entirely with Streamlit, showcasing various data visualization projects and web scraping capabilities. This project demonstrates the versatility of Python for both data analysis and web application development.",
-    features: ["Interactive data visualizations", "Web scraping demonstrations", "Multiple project showcases", "Streamlit-powered interface", "Data analysis workflows"],
-    challenges: "Creating an engaging portfolio experience using Streamlit's limitations while effectively showcasing technical capabilities and project diversity."
-  }
+    longDescription: "Plataforma completa de reservaciones para venues nocturnos. Incluye tres interfaces: una app pública donde los clientes eligen mesa, ven el plano del lugar y reciben un código de confirmación; un panel de administrador con login, estadísticas del día, gestión de mesas y generación de links para el cadenero; y una vista simplificada para el cadenero (RP) con acceso por token temporal que le permite marcar llegadas y no-shows en tiempo real. El backend expone una API REST con autenticación diferenciada por rol y manejo de concurrencia en reservaciones mediante transacciones en Postgres.",
+    features: [
+      "Selección de mesa sobre el plano real del venue con posicionamiento por coordenadas",
+      "Código de confirmación único generado automáticamente (ej. G-342)",
+      "Dashboard admin con stats del día: reservas, personas y consumo mínimo total",
+      "Link temporal para cadenero (expira a las 6am), sin necesidad de login",
+      "Configuración de consumo mínimo por mesa y por día de la semana",
+      "Manejo de concurrencia en reservaciones con transacciones en PostgreSQL",
+      "RLS (Row Level Security) en Supabase — cada admin solo ve su venue",
+      "Arquitectura monorepo con workspaces compartidos de tipos TypeScript"
+    ],
+    challenges: "Manejar concurrencia en reservaciones para evitar doble-booking, implementar autenticación diferenciada por tres roles distintos y sincronizar el estado de mesas en tiempo real entre el admin y el cadenero."
+  },
 ];
 
 export const education = {
