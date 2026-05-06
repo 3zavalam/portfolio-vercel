@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
 import { projects } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Github } from "lucide-react";
@@ -18,6 +19,7 @@ type ProjectVideo = {
 };
 
 const ProjectDetail = () => {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   const { id } = useParams();
   const project = projects.find(p => p.id === parseInt(id || '0'));
   const projectVideos = Array.isArray((project as { videos?: ProjectVideo[] } | undefined)?.videos)
