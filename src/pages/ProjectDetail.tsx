@@ -106,6 +106,23 @@ const ProjectDetail = () => {
           </div>
         </div>
 
+        {/* Project Images (if available) */}
+        {(project as any).images?.length > 0 && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-white mb-6 text-center">Project Media</h2>
+            <div className="flex justify-center">
+              {(project as any).images.map((src: string, index: number) => (
+                <img
+                  key={index}
+                  src={src}
+                  alt={`${project.title} preview ${index + 1}`}
+                  className="rounded-lg max-h-96 object-contain border border-white/10"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Project Videos (if available) */}
         {projectVideos.length > 0 && (
           <div className="mb-12">
@@ -158,10 +175,22 @@ const ProjectDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Description */}
           <div className="bg-white/5 border border-white/10 rounded-lg p-8">
-            <h2 className="text-2xl font-bold text-white mb-6">About This Project</h2>
-            <p className="text-gray-300 leading-relaxed">
-              {project.longDescription}
-            </p>
+            <h2 className="text-2xl font-bold text-white mb-6">
+              {(project as any).report ? "Project Report" : "About This Project"}
+            </h2>
+            {!(project as any).report && (
+              <p className="text-gray-300 leading-relaxed">
+                {project.longDescription}
+              </p>
+            )}
+            {(project as any).report && (
+              <iframe
+                src={(project as any).report}
+                className="w-full rounded-lg border border-white/10"
+                style={{ height: "500px" }}
+                title="Project Report"
+              />
+            )}
           </div>
 
           {/* Features & Challenges */}

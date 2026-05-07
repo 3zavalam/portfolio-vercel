@@ -4,6 +4,8 @@ import winnerWayCover from "@/assets/winner-way.png";
 import reservacionesCover from "@/assets/projects/reservaciones/portada_reservaciones.png";
 import reservacionesVideo from "@/assets/projects/reservaciones/reservaciones.mp4";
 import cv2026 from "@/assets/documents/cv2026.pdf";
+import xgModelReport from "@/assets/documents/xG model report.pdf";
+import dashboardReport from "@/assets/documents/Match Report Analysis Project.pdf";
 
 export const personalInfo = {
   name: "Emilio Zavala Miceli",
@@ -48,6 +50,8 @@ export const projects = [
     tech: ["Python", "Matplotlib", "Web Scraping", "BeautifulSoup", "Data Analysis"],
     github: "https://github.com/3zavalam/Match-Report-Analysis",
     image: "/projects/dashboard/dashboard.png",
+    images: ["/projects/dashboard/dashboard.png"],
+    report: dashboardReport,
     longDescription: "This project features two comprehensive dashboards created by scraping data from SofaScore and Fotmob. The Match Recap Dashboard presents key stats, shot data, and team performance, while the Shot Maps Dashboard provides detailed shot maps and Player of the Match analysis. The aim is to present the most relevant match information in a concise and user-friendly way, including key statistics that provide insights into the match's dynamics.",
     features: ["Best Player Stats with detailed statistics", "Shot Maps showing location and accuracy", "Match Momentum graphs highlighting key moments", "Comprehensive match overview with possession and expected goals", "Player and team shot map comparisons"],
     challenges: "Creating accurate data extraction from multiple sources while maintaining data consistency and developing meaningful visualizations that provide actionable match insights."
@@ -61,6 +65,7 @@ export const projects = [
     image: "/projects/xg-model/allShots.png",
     longDescription: "A machine learning model developed to predict Expected Goals (xG) in football using 2022 FIFA World Cup data from StatsBomb. The xG metric quantifies the likelihood of a goal being scored from a particular shot based on various factors such as shot location, angle, and body part. Two models were tested: Linear Regression and Logistic Regression, with the latter chosen as the final model due to its ability to avoid negative xG values.",
     features: ["StatsBomb data integration with 64 matches and 1453 shots", "Logistic regression model achieving R² score of 0.187", "Comprehensive shot analysis including location, angle, and body part", "Model performance comparison with StatsBomb's official xG", "Interactive visualizations of all World Cup shots"],
+    report: xgModelReport,
     challenges: "Processing large datasets efficiently while creating an accurate model that accounts for various factors affecting shot quality, and achieving performance comparable to industry-standard models."
   },
   {
