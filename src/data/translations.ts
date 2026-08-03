@@ -10,7 +10,7 @@ export const ui = {
     substackLabel: "laOcho on Substack",
 
     // Contact block
-    contactIntro: "Open to internships and junior data roles. Write to me.",
+    contactIntro: "",
 
     // About & Tools
     about: "About",
