@@ -8,111 +8,64 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Futuristic black background with white text */
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    
-    --card: 0 0% 5%;
-    --card-foreground: 0 0% 100%;
-    
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 100%;
-    
-    /* Futuristic accent system */
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
-    --primary-hover: 0 0% 85%;
-    
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 100%;
-    
-    --muted: 0 0% 8%;
-    --muted-foreground: 0 0% 70%;
-    
-    --accent: 0 0% 12%;
-    --accent-foreground: 0 0% 100%;
-    
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 0%;
-    
-    --border: 0 0% 15%;
-    --input: 0 0% 10%;
-    --ring: 0 0% 100%;
-    
-    /* Futuristic portfolio tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(0 0% 0%), hsl(0 0% 8%));
-    --skill-bg: 0 0% 8%;
-    --project-border: 0 0% 20%;
-    --text-gradient: linear-gradient(135deg, hsl(0 0% 100%), hsl(0 0% 80%));
-    
+    /* Paleta editorial: solo 3 colores. Todo lo demás son estos mismos con opacidad. */
+    --paper: 42 37% 93%;        /* crema hueso — fondo de todo el sitio */
+    --paper-raised: 42 40% 97%; /* la misma crema, un punto más clara, para tarjetas */
+    --ink: 40 6% 10%;           /* casi negro — texto y la banda del nombre */
+    /* Terracota. A 46% de luminosidad el contraste con la crema daba 4.17:1 y se
+       quedaba corto para texto normal (AA pide 4.5). A 40% da 5.25:1, así que el
+       mismo color sirve para texto sobre crema y para crema sobre él. */
+    --clay: 15 64% 40%;
+
+    --background: var(--paper);
+    --foreground: var(--ink);
+
+    --card: var(--paper-raised);
+    --card-foreground: var(--ink);
+
+    --popover: var(--paper-raised);
+    --popover-foreground: var(--ink);
+
+    --primary: var(--ink);
+    --primary-foreground: var(--paper);
+    --primary-hover: 40 6% 20%;
+
+    --secondary: 42 25% 88%;
+    --secondary-foreground: var(--ink);
+
+    --muted: 42 25% 89%;
+    --muted-foreground: 40 6% 42%;
+
+    --accent: 42 25% 88%;
+    --accent-foreground: var(--ink);
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: var(--paper);
+
+    --border: 40 12% 82%;
+    --input: 40 12% 82%;
+    --ring: var(--ink);
+
+    --project-border: 40 12% 78%;
+
     /* Subtle animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 0%;
-
-    --sidebar-foreground: 0 0% 100%;
-
-    --sidebar-primary: 0 0% 100%;
-
-    --sidebar-primary-foreground: 0 0% 0%;
-
-    --sidebar-accent: 0 0% 10%;
-
-    --sidebar-accent-foreground: 0 0% 100%;
-
-    --sidebar-border: 0 0% 15%;
-
-    --sidebar-ring: 0 0% 100%;
+    --sidebar-background: var(--paper);
+    --sidebar-foreground: var(--ink);
+    --sidebar-primary: var(--ink);
+    --sidebar-primary-foreground: var(--paper);
+    --sidebar-accent: 42 25% 88%;
+    --sidebar-accent-foreground: var(--ink);
+    --sidebar-border: 40 12% 82%;
+    --sidebar-ring: var(--ink);
   }
 
-  .dark {
-    /* Dark mode - inverted minimalist black and white */
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 100%;
-    
-    --popover: 0 0% 0%;
-    --popover-foreground: 0 0% 100%;
-    
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
-    --primary-hover: 0 0% 85%;
-    
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 100%;
-    
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 65%;
-    
-    --accent: 0 0% 10%;
-    --accent-foreground: 0 0% 100%;
-    
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 0%;
-    
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 100%;
-    
-    /* Dark mode portfolio tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(0 0% 5%), hsl(0 0% 10%));
-    --skill-bg: 0 0% 5%;
-    --project-border: 0 0% 20%;
-    --text-gradient: linear-gradient(135deg, hsl(0 0% 100%), hsl(0 0% 70%));
-    --sidebar-background: 0 0% 0%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 0 0% 100%;
-    --sidebar-primary-foreground: 0 0% 0%;
-    --sidebar-accent: 0 0% 10%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 0 0% 100%;
-  }
+  /* El sitio tiene un solo tema (claro). No hay bloque .dark: nada monta un
+     ThemeProvider, así que esos tokens nunca se aplicaban. */
 }
 
 @layer base {
@@ -121,13 +74,27 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Los títulos van en serif salvo que la clase diga otra cosa (la banda del
+     nombre usa font-sans a propósito). */
+  h1, h2, h3 {
+    @apply font-serif font-normal;
   }
 }
 
 @layer utilities {
+  /* Sin transición aquí: la pone el carrusel, que necesita 500ms para el cambio
+     de foco y no quiere que esta clase se la pise. */
   .project-card {
-    @apply bg-white/5 border border-white/10 rounded-lg p-6 transition-all duration-300 hover:border-white/30 hover:bg-white/10 flex flex-col h-full;
+    @apply bg-paper-raised border border-ink/10 rounded-2xl flex flex-col h-full overflow-hidden;
+  }
+
+  /* Etiquetas chicas de metadata (tech, fechas): mono en mayúsculas, como las
+     referencias 3-4. */
+  .meta-label {
+    @apply font-mono text-[11px] uppercase tracking-[0.12em] text-ink/45;
   }
 }
 

@@ -1,126 +1,73 @@
-import { useState } from "react";
-import { skills, projects, personalInfo } from "@/data/portfolio";
+import { skills, personalInfo } from "@/data/portfolio";
+import { useLanguage } from "@/lib/i18n";
 
-// Build skill → project titles map from existing project tech arrays
-const skillToProjects: Record<string, string[]> = {};
-projects.forEach((project) => {
-  project.tech.forEach((tech) => {
-    const key = tech.toLowerCase();
-    if (!skillToProjects[key]) skillToProjects[key] = [];
-    skillToProjects[key].push(project.title);
-  });
-});
-
-const getProjects = (skill: string): string[] =>
-  skillToProjects[skill.toLowerCase()] ?? [];
-
-// Tooltip state type
-type TooltipState = {
-  skill: string;
-  usedIn: string[];
-  x: number;
-  y: number;
-} | null;
+// Las categorías de `skills` se aplanan en una sola lista. SQL estaba en dos
+// grupos (Languages y Databases), así que se filtran repetidas sin importar
+// mayúsculas, conservando el orden de aparición.
+const uniqueSkills = Array.from(
+  skills
+    .flatMap((group) => group.items)
+    .reduce((acc, skill) => {
+      const key = skill.toLowerCase();
+      if (!acc.has(key)) acc.set(key, skill);
+      return acc;
+    }, new Map<string, string>())
+    .values()
+);
 
 const AboutTools = () => {
-  const [tooltip, setTooltip] = useState<TooltipState>(null);
-
-  const handleMouseEnter = (
-    e: React.MouseEvent<HTMLDivElement>,
-    skill: string
-  ) => {
-    const usedIn = getProjects(skill);
-    if (usedIn.length === 0) return;
-    const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
-    setTooltip({
-      skill,
-      usedIn,
-      x: rect.left + rect.width / 2,
-      y: rect.top - 8,
-    });
-  };
-
-  const handleMouseLeave = () => setTooltip(null);
+  const { t, tr } = useLanguage();
 
   return (
-    <section className="py-20">
+    // scroll-mt-20: el header fijo taparía el título al llegar desde la navegación.
+    <section id="about" className="scroll-mt-20 py-16 md:py-24">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* About Section */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
-              About
-            </h2>
-            <div className="bg-white/5 border border-white/10 rounded-lg p-6 hover:border-white/20 transition-all">
-              <p className="text-gray-300 leading-relaxed">
-                {personalInfo.about}
+            <h2 className="text-4xl md:text-5xl mb-6">{t("about")}</h2>
+            <div className="bg-paper-raised border border-ink/10 rounded-2xl p-6 md:p-8">
+              <p className="text-ink/70 leading-relaxed text-lg">
+                {tr(personalInfo.about)}
               </p>
+
+              {/* Nota al pie: separada de la bio por una línea, en cuerpo chico.
+                  Se lee si te interesa y no interrumpe si no. */}
+              <div className="mt-6 pt-5 border-t border-ink/10">
+                <p className="meta-label mb-2">{t("favoriteBooks")}</p>
+                <ul className="space-y-1.5">
+                  {personalInfo.favoriteBooks.map((book) => (
+                    <li
+                      key={book.title}
+                      className="font-serif text-base leading-snug"
+                    >
+                      <em>{book.title}</em>
+                      <span className="text-ink/50"> — {book.author}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
 
           {/* Tools Section */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
-              Tools &amp; Technologies
-            </h2>
-            <div className="bg-white/5 border border-white/10 rounded-lg p-6 hover:border-white/20 transition-all">
-              <div className="flex flex-wrap gap-3">
-                {skills.flatMap((group) => group.items).map((skill, index) => {
-                  const hasProjects = getProjects(skill).length > 0;
-                  return (
-                    <div
-                      key={index}
-                      onMouseEnter={(e) => handleMouseEnter(e, skill)}
-                      onMouseLeave={handleMouseLeave}
-                      className={`bg-white/10 border border-white/20 rounded-md px-3 py-1 transition-all ${
-                        hasProjects
-                          ? "hover:border-white/60 hover:bg-white/20 cursor-default"
-                          : "hover:border-white/40 hover:bg-white/15"
-                      }`}
-                    >
-                      <span className="text-white text-sm">{skill}</span>
-                      {hasProjects && (
-                        <span className="ml-1 text-white/30 text-xs">›</span>
-                      )}
-                    </div>
-                  );
-                })}
+            <h2 className="text-4xl md:text-5xl mb-6">{t("toolsAndTech")}</h2>
+            <div className="bg-paper-raised border border-ink/10 rounded-2xl p-6 md:p-8">
+              <div className="flex flex-wrap gap-2">
+                {uniqueSkills.map((skill) => (
+                  <div
+                    key={skill}
+                    className="border border-ink/15 rounded-full px-3 py-1"
+                  >
+                    <span className="text-sm">{skill}</span>
+                  </div>
+                ))}
               </div>
-              <p className="text-white/30 text-xs mt-4">
-                Hover over a skill to see where I used it
-              </p>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Fixed tooltip — renders outside any overflow container */}
-      {tooltip && (
-        <div
-          className="fixed z-[9999] pointer-events-none"
-          style={{
-            left: tooltip.x,
-            top: tooltip.y,
-            transform: "translate(-50%, -100%)",
-          }}
-        >
-          <div className="bg-zinc-900 border border-white/20 text-white text-xs rounded-lg shadow-2xl px-3 py-2 min-w-[140px]">
-            <p className="font-semibold text-white/60 mb-1 uppercase tracking-wide text-[10px]">
-              Used in:
-            </p>
-            <ul className="space-y-0.5">
-              {tooltip.usedIn.map((p) => (
-                <li key={p} className="flex items-start gap-1">
-                  <span className="text-white/50 mt-0.5">•</span>
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
-            {/* Arrow */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-full border-4 border-transparent border-t-zinc-900" />
-          </div>
-        </div>
-      )}
     </section>
   );
 };

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { projects } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Github } from "lucide-react";
+import { useLanguage, Localized } from "@/lib/i18n";
 
 type ProjectVideoSource = {
   src: string;
@@ -13,12 +14,13 @@ type ProjectVideo = {
   src?: string;
   type?: string;
   sources?: ProjectVideoSource[];
-  title?: string;
-  description?: string;
+  title?: Localized;
+  description?: Localized;
   poster?: string;
 };
 
 const ProjectDetail = () => {
+  const { t, tr } = useLanguage();
   useEffect(() => { window.scrollTo(0, 0); }, []);
   const { id } = useParams();
   const project = projects.find(p => p.id === parseInt(id || '0'));
@@ -34,11 +36,11 @@ const ProjectDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Project Not Found</h1>
+          <h1 className="text-4xl mb-4">{t("projectNotFound")}</h1>
           <Link to="/">
-            <Button className="bg-white text-black hover:bg-gray-200">
+            <Button className="bg-ink text-paper hover:bg-ink/85 rounded-full">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
+              {t("backToHome")}
             </Button>
           </Link>
         </div>
@@ -52,21 +54,21 @@ const ProjectDetail = () => {
         {/* Navigation */}
         <div className="mb-8">
           <Link to="/">
-            <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+            <Button variant="outline" className="border-ink/20 text-ink hover:bg-ink/5 rounded-full">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Home
+              {t("backToHome")}
             </Button>
           </Link>
         </div>
 
         {/* Project Header */}
         <div className="mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            {project.title}
+          <h1 className="text-4xl md:text-6xl mb-6 leading-tight">
+            {tr(project.title)}
           </h1>
           
-          <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-            {project.description}
+          <p className="text-xl text-ink/65 mb-8 leading-relaxed">
+            {tr(project.description)}
           </p>
 
           <div className="flex gap-4 mb-8">
@@ -75,9 +77,9 @@ const ProjectDetail = () => {
               target="_blank" 
               rel="noopener noreferrer"
             >
-              <Button className="bg-white text-black hover:bg-gray-200">
+              <Button className="bg-ink text-paper hover:bg-ink/85 rounded-full">
                 <Github className="w-4 h-4 mr-2" />
-                {(project as any).githubBackend ? 'Frontend Code' : 'View Code'}
+                {(project as any).githubBackend ? t("frontendCode") : t("viewCode")}
               </Button>
             </a>
             {(project as any).githubBackend && (
@@ -86,9 +88,9 @@ const ProjectDetail = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
               >
-                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+                <Button variant="outline" className="border-ink/20 text-ink hover:bg-ink/5 rounded-full">
                   <Github className="w-4 h-4 mr-2" />
-                  Backend Code
+                  {t("backendCode")}
                 </Button>
               </a>
             )}
@@ -98,9 +100,9 @@ const ProjectDetail = () => {
             {project.tech.map((tech, index) => (
               <div 
                 key={index}
-                className="bg-white/10 border border-white/20 rounded-md px-3 py-1"
+                className="border border-ink/15 rounded-full px-3 py-1"
               >
-                <span className="text-white text-sm">{tech}</span>
+                <span className="text-sm">{tech}</span>
               </div>
             ))}
           </div>
@@ -109,14 +111,14 @@ const ProjectDetail = () => {
         {/* Project Images (if available) */}
         {(project as any).images?.length > 0 && (
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6 text-center">Project Media</h2>
+            <h2 className="text-3xl mb-6 text-center">{t("projectMedia")}</h2>
             <div className="flex justify-center">
               {(project as any).images.map((src: string, index: number) => (
                 <img
                   key={index}
                   src={src}
-                  alt={`${project.title} preview ${index + 1}`}
-                  className="rounded-lg max-h-96 object-contain border border-white/10"
+                  alt={`${tr(project.title)} preview ${index + 1}`}
+                  className="rounded-2xl max-h-96 object-contain border border-ink/10"
                 />
               ))}
             </div>
@@ -126,12 +128,12 @@ const ProjectDetail = () => {
         {/* Project Videos (if available) */}
         {projectVideos.length > 0 && (
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6 text-center">Project Media</h2>
+            <h2 className="text-3xl mb-6 text-center">{t("projectMedia")}</h2>
             <div className={projectVideosWrapperClass}>
               {projectVideos.map((video, index) => (
                 <div
                   key={`${project.id}-video-${index}`}
-                  className={`bg-white/5 border border-white/10 rounded-lg p-4 w-full ${hasMultipleVideos ? "" : "max-w-3xl"}`}
+                  className={`bg-paper-raised border border-ink/10 rounded-2xl p-4 w-full ${hasMultipleVideos ? "" : "max-w-3xl"}`}
                 >
                   <video
                     controls
@@ -158,10 +160,10 @@ const ProjectDetail = () => {
                   {(video.title || video.description) && (
                     <div className="mt-3">
                       {video.title && (
-                        <h3 className="text-white font-semibold">{video.title}</h3>
+                        <h3 className="font-medium">{tr(video.title)}</h3>
                       )}
                       {video.description && (
-                        <p className="text-gray-400 text-sm">{video.description}</p>
+                        <p className="text-ink/55 text-sm">{tr(video.description)}</p>
                       )}
                     </div>
                   )}
@@ -174,21 +176,21 @@ const ProjectDetail = () => {
         {/* Project Details */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Description */}
-          <div className="bg-white/5 border border-white/10 rounded-lg p-8">
-            <h2 className="text-2xl font-bold text-white mb-6">
-              {(project as any).report ? "Project Report" : "About This Project"}
+          <div className="bg-paper-raised border border-ink/10 rounded-2xl p-8">
+            <h2 className="text-3xl mb-6">
+              {(project as any).report ? t("projectReport") : t("aboutThisProject")}
             </h2>
             {!(project as any).report && (
-              <p className="text-gray-300 leading-relaxed">
-                {project.longDescription}
+              <p className="text-ink/70 leading-relaxed">
+                {tr(project.longDescription)}
               </p>
             )}
             {(project as any).report && (
               <iframe
                 src={(project as any).report}
-                className="w-full rounded-lg border border-white/10"
+                className="w-full rounded-2xl border border-ink/10"
                 style={{ height: "500px" }}
-                title="Project Report"
+                title={t("projectReport")}
               />
             )}
           </div>
@@ -196,23 +198,23 @@ const ProjectDetail = () => {
           {/* Features & Challenges */}
           <div className="space-y-8">
             {/* Features */}
-            <div className="bg-white/5 border border-white/10 rounded-lg p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">Key Features</h2>
+            <div className="bg-paper-raised border border-ink/10 rounded-2xl p-8">
+              <h2 className="text-3xl mb-6">{t("keyFeatures")}</h2>
               <ul className="space-y-3">
-                {project.features.map((feature, index) => (
+                {tr(project.features).map((feature, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">{feature}</span>
+                    <div className="w-1.5 h-1.5 bg-clay rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-ink/70">{feature}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Challenges */}
-            <div className="bg-white/5 border border-white/10 rounded-lg p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">Technical Challenges</h2>
-              <p className="text-gray-300 leading-relaxed">
-                {project.challenges}
+            <div className="bg-paper-raised border border-ink/10 rounded-2xl p-8">
+              <h2 className="text-3xl mb-6">{t("technicalChallenges")}</h2>
+              <p className="text-ink/70 leading-relaxed">
+                {tr(project.challenges)}
               </p>
             </div>
           </div>
@@ -220,7 +222,7 @@ const ProjectDetail = () => {
 
         {/* Navigation to other projects */}
         <div className="mt-20 text-center">
-          <h3 className="text-2xl font-bold text-white mb-8">Other Projects</h3>
+          <h3 className="text-3xl mb-8">{t("otherProjects")}</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {projects.filter(p => p.id !== project.id).map((otherProject) => {
               const otherImageSrc = otherProject.image.startsWith("/")
@@ -229,13 +231,13 @@ const ProjectDetail = () => {
 
               return (
                 <Link key={otherProject.id} to={`/project/${otherProject.id}`}>
-                  <div className="bg-white/5 border border-white/10 rounded-lg p-4 hover:border-white/30 hover:bg-white/10 transition-all">
+                  <div className="bg-paper-raised border border-ink/10 rounded-2xl p-4 h-full transition-all hover:border-clay">
                     <img 
                       src={otherImageSrc}
-                      alt={otherProject.title}
+                      alt={tr(otherProject.title)}
                       className="w-full aspect-video object-cover rounded mb-3"
                     />
-                    <h4 className="text-white font-semibold text-sm">{otherProject.title}</h4>
+                    <h4 className="font-medium text-sm">{tr(otherProject.title)}</h4>
                   </div>
                 </Link>
               );
