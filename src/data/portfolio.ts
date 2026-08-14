@@ -6,6 +6,10 @@ import reservacionesVideo from "@/assets/projects/reservaciones/reservaciones.mp
 import cv2026 from "@/assets/documents/cv2026.pdf";
 import xgModelReport from "@/assets/documents/xG model report.pdf";
 import dashboardReport from "@/assets/documents/Match Report Analysis Project.pdf";
+import clubLeonLogo from "@/assets/experience/club-leon.webp";
+import mitacsLogo from "@/assets/experience/mitacs-inrs.png";
+import piqueroLogo from "@/assets/experience/piquero.png";
+import riansaLogo from "@/assets/experience/riansa.png";
 
 // Los campos de texto visible van como { en, es }. Los que no dependen del idioma
 // (nombres, URLs, tecnologías) se quedan como string plano: `tr()` los devuelve tal cual.
@@ -326,6 +330,63 @@ export const projects = [
       es: "Manejar concurrencia en reservaciones para evitar doble-booking, implementar autenticación diferenciada por tres roles distintos y sincronizar el estado de mesas en tiempo real entre el admin y el cadenero."
     }
   },
+];
+
+// Orden: más reciente primero.
+export const experience = [
+  {
+    id: 1,
+    company: "Club León FC",
+    role: {
+      en: "Data & Automation Intern",
+      es: "Practicante de Automatizaciones y Análisis de Datos"
+    },
+    location: { en: "Remote", es: "Remoto" },
+    period: { en: "Aug 2026 – Present", es: "Ago 2026 – Presente" },
+    logo: clubLeonLogo,
+    description: {
+      en: "Building automations and data analysis workflows to support football operations.",
+      es: "Desarrollando automatizaciones y análisis de datos para apoyar las operaciones del club."
+    }
+  },
+  {
+    id: 2,
+    company: "Mitacs Globalink Research Internship",
+    role: { en: "Research Intern", es: "Investigador Becario" },
+    location: { en: "Montreal, Canada", es: "Montreal, Canadá" },
+    period: { en: "May – Aug 2026", es: "Mayo – Ago 2026" },
+    logo: mitacsLogo,
+    logoBg: "dark" as const,
+    description: {
+      en: "Applying AI and web scraping techniques to research problems under faculty supervision at a Canadian university.",
+      es: "Aplicando técnicas de IA y web scraping a problemas de investigación bajo la supervisión de profesores en una universidad canadiense."
+    }
+  },
+  {
+    id: 3,
+    company: "Piquero Technology and Sports",
+    role: { en: "Software Developer Intern", es: "Practicante de Desarrollo de Software" },
+    location: { en: "Puebla, Mexico", es: "Puebla, México" },
+    period: { en: "Summer 2025", es: "Verano 2025" },
+    logo: piqueroLogo,
+    logoBg: "dark" as const,
+    description: {
+      en: "Built a Q&A chatbot for a national swimming event (500+ attendees), automating FAQ responses and reducing staff workload. Designed a Python algorithm for automated data conversion between Hy-Tek (.hy3) and Excel, eliminating manual data entry and improving accuracy.",
+      es: "Construí un chatbot de preguntas y respuestas para un evento nacional de natación (500+ asistentes), automatizando respuestas frecuentes y reduciendo la carga del staff. Diseñé un algoritmo en Python para la conversión automática de datos entre Hy-Tek (.hy3) y Excel, eliminando la captura manual y mejorando la precisión."
+    }
+  },
+  {
+    id: 4,
+    company: "RIANSA",
+    role: { en: "Data Analyst Intern", es: "Practicante de Análisis de Datos" },
+    location: { en: "Villahermosa, Mexico", es: "Villahermosa, México" },
+    period: { en: "Summer 2024", es: "Verano 2024" },
+    logo: riansaLogo,
+    description: {
+      en: "Created and managed Power BI dashboards to visualize nationwide sales data, enabling faster reporting for the commercial team. Identified top-performing products and highest-volume client locations, generating insights that directly informed sales strategy.",
+      es: "Creé y administré dashboards en Power BI para visualizar datos de ventas a nivel nacional, agilizando los reportes del equipo comercial. Identifiqué los productos con mejor desempeño y las ubicaciones de clientes con mayor volumen, generando insights que informaron directamente la estrategia de ventas."
+    }
+  }
 ];
 
 export const education = {

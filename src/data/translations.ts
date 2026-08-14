@@ -17,6 +17,9 @@ export const ui = {
     toolsAndTech: "Tools & Technologies",
     favoriteBooks: "Favorite books",
 
+    // Experience
+    experience: "Experience",
+
     // Projects
     projects: "Projects",
     code: "Code",
@@ -66,6 +69,9 @@ export const ui = {
     about: "Sobre mí",
     toolsAndTech: "Herramientas y tecnologías",
     favoriteBooks: "Libros favoritos",
+
+    // Experience
+    experience: "Experiencia",
 
     // Projects
     projects: "Proyectos",

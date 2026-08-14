@@ -313,3 +313,123 @@ CV y los contactos, dejando el header con el nombre y navegación.
   pestaña" no es decorativo: varios navegadores móviles no renderizan PDFs en iframe.
 - [x] Nav en móvil oculta (`hidden md:flex`): no cabe junto al nombre y la página son
   tres secciones seguidas.
+
+---
+
+# Tarea 4: Sección de Experiencia
+
+## Contexto
+
+Emilio pasó el bloque "Professional Experience" de su CV (3 entradas) + pidió agregar
+una 4ta: Club León FC, agosto 2026, activa (sigue ahí). Mandó 4 logos (Mitacs/INRS,
+Piquero, RIANSA, León FC) ya copiados a `src/assets/experience/`.
+
+## Datos (orden más reciente primero)
+
+1. **Club León FC** — Automatizaciones y Análisis de Datos — León, México — Ago 2026 – Presente — **activo**
+2. **Mitacs Globalink Research Internship** — Research Intern — Montreal, Canadá — May – Ago 2026
+3. **Piquero Technology and Sports** — Software Developer Intern — Verano 2025
+4. **RIANSA** — Data Analyst Intern — Verano 2024
+
+## Todo
+
+- [x] **Paso 1 — Datos.** `src/data/portfolio.ts`: export `experience` (id, company,
+  role {en,es}, location opcional, period {en,es}, active bool, logo, description {en,es}).
+- [x] **Paso 2 — Traducciones.** `src/data/translations.ts`: labels `experience` y
+  `activeNow` ("Active now" / "Activo ahora").
+- [x] **Paso 3 — Componente.** `src/components/Experience.tsx`: lista vertical de
+  tarjetas (mismo estilo `bg-paper-raised border border-ink/10 rounded-2xl` que
+  AboutTools), logo chico + empresa/rol + `meta-label` con el periodo + badge clay
+  si `active` + descripción.
+- [x] **Paso 4 — Montar.** `Index.tsx`: `Projects → Experience → AboutTools → Contact`.
+  `Header.tsx`: agregar "experience" a `SECTIONS`.
+- [x] **Paso 5 — Verificar.** `npx tsc --noEmit` limpio. `npm run lint`: los 12 errores
+  y 8 warnings son preexistentes (ui/*, ProjectDetail.tsx, tailwind.config.ts); ningún
+  archivo nuevo o tocado aparece en la lista. Falta correr `npm run dev` y revisar a ojo.
+
+## Review
+
+- **Logos**: copiados de `~/Downloads` a `src/assets/experience/` (club-leon.webp,
+  mitacs-inrs.png, piquero.png, riansa.png).
+- **Orden**: más reciente primero — León → Mitacs → Piquero → RIANSA.
+- Badge "Activo ahora" agregado y luego quitado a pedido de Emilio (campo `active`
+  removido de `portfolio.ts`, clave `activeNow` removida de `translations.ts`).
+- **Logo del sitio**: Emilio pasó `logo.jpeg` (balón dibujado a mano) → se probaron
+  3 variantes (papel crema, fondo negro, fondo blanco plano) y varias combinaciones
+  de dónde mostrarlo (header junto al nombre + favicon, solo favicon). Terminó en:
+  **solo favicon** (`public/favicon.jpeg`, referenciado en `index.html`), fondo
+  blanco plano, sin textura de papel. El header no muestra logo, solo el nombre.
+  `src/assets/logo.jpeg` y `src/assets/logo-dark.jpeg` quedaron en el repo sin usar
+  en código (son el material fuente); no se borraron por si se retoma.
+
+---
+
+## DESCARTADA: se decidió no hacer el rediseño de fichero apilado
+
+Emilio prefirió dejar el estilo actual y solo reordenar las secciones: Experience
+antes que Projects (ver más abajo). Lo de abajo queda documentado por si se retoma.
+
+# Tarea 5: Todo el sitio como "fichero apilado" (folder stack) [DESCARTADA]
+
+## Contexto
+
+Emilio pasó una referencia visual: pestañas de carpeta apiladas en cascada (cada
+una con la esquina doblada, asomando el nombre), agrupadas por separadores negros
+tipo índice alfabético ("B-C", "F-H"...), y un cajón cerrado al final con el
+conteo total ("REVIEWS / 08 FILES").
+
+Pidió aplicarlo a **todo el sitio**: Proyectos, Experience, y que "Sobre mí" se
+abra desde ahí también. Esto reemplaza:
+- El carrusel de `Projects.tsx` (embla + gesto de trackpad + flechas — bastante
+  trabajo ya invertido ahí, ver Tarea 3).
+- La lista de `Experience.tsx` (recién construida en la Tarea 4).
+- El grid de `AboutTools.tsx`.
+
+## Propuesta (a confirmar antes de tocar código)
+
+- Un solo stack vertical con 3 grupos, cada uno con un separador negro como
+  encabezado: **PROYECTOS**, **EXPERIENCIA**, **SOBRE MÍ**.
+- Cada fila = una "carpeta": esquina doblada (`clip-path`), nombre en la pestaña,
+  fondo `paper-raised`, borde `ink/10` — misma paleta de siempre, solo cambia la
+  forma.
+- Click en una carpeta la "abre":
+  - **Proyectos** → navega a `/project/:id` (la página de detalle ya existe, no
+    se toca `ProjectDetail.tsx`).
+  - **Experiencia** → expande in-line (acordeón) con rol, periodo, descripción.
+  - **Sobre mí** → una sola carpeta que al abrirse expande bio + libros +
+    herramientas.
+- Al final del stack, un "cajón" cerrado con el conteo total (ej. "10 ARCHIVOS"),
+  como cierre visual antes de `Contact.tsx`.
+
+## Preguntas abiertas antes de programar
+
+1. El carrusel de Proyectos tiene bastante trabajo fino (drag, gesto de trackpad
+   sin robarle el "atrás" del navegador, foco con blur). ¿Se elimina por completo
+   ese código o lo dejamos por si se quiere revertir?
+2. En móvil, un stack en cascada de ~10 pestañas puede quedar muy alto/angosto.
+   ¿Ok con que cada pestaña sea más compacta (menos "asomado") en pantallas chicas?
+3. Los separadores de la referencia son alfabéticos (B-C, F-H...). Aquí serían por
+   categoría (PROYECTOS/EXPERIENCIA/SOBRE MÍ) — ¿correcto, o prefieres otro criterio
+   de agrupación dentro de Proyectos (por tech, por año)?
+
+## Todo (pendiente de confirmar antes de empezar)
+
+- [ ] **Paso 1 — Componente base.** `FileTab.tsx`: una pestaña de carpeta
+  reutilizable (esquina doblada, nombre, estado abierto/cerrado, offset de stack).
+- [ ] **Paso 2 — Stack + separadores.** Nuevo componente que arma el stack completo
+  con los 3 grupos y sus separadores negros.
+- [ ] **Paso 3 — Contenido expandible.** Acordeón para Experience y Sobre mí.
+- [ ] **Paso 4 — Cajón de cierre.** Tarjeta final con el conteo.
+- [ ] **Paso 5 — Montar y borrar lo viejo.** `Index.tsx` usa el nuevo stack;
+  se elimina (o se deja sin montar) `Projects.tsx`, `Experience.tsx`, `AboutTools.tsx`
+  según lo que se decida en la pregunta 1.
+- [ ] **Paso 6 — Verificar.** `npx tsc --noEmit`, `npm run lint`, `npm run dev`,
+  revisar desktop y móvil.
+
+---
+
+# Tarea 6: Reordenar secciones — Experience antes que Projects
+
+- [x] `Index.tsx`: `Experience → Projects → AboutTools → Contact`
+- [x] `Header.tsx`: nav en el mismo orden (`experience`, `projects`, `about`, `contact`)
+- [x] `npx tsc --noEmit` limpio.

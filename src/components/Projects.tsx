@@ -101,7 +101,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="scroll-mt-16 pt-10 md:pt-14 pb-16 md:pb-20">
+    <section id="projects" className="scroll-mt-16 pt-16 md:pt-24 pb-16 md:pb-20">
       {/* El contador va pegado al título, no al otro extremo de la pantalla:
           se lee junto a lo que cuenta. */}
       <div className="container mx-auto px-4 mb-10 md:mb-14 flex items-end gap-4">

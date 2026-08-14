@@ -7,6 +7,7 @@ import { useLanguage } from "@/lib/i18n";
 import { UIKey } from "@/data/translations";
 
 const SECTIONS: { id: string; label: UIKey }[] = [
+  { id: "experience", label: "experience" },
   { id: "projects", label: "projects" },
   { id: "about", label: "about" },
   { id: "contact", label: "contact" },
