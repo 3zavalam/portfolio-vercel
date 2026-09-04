@@ -211,7 +211,7 @@ export const projects = [
       en: "Complete platform for tennis analysis with AI. Modern frontend and backend with keypoint detection, DTW and impact analysis.",
       es: "Plataforma completa de análisis de tenis con IA. Frontend y backend modernos con detección de keypoints, DTW y análisis de impacto."
     },
-    tech: ["React", "TypeScript", "Flask", "Python", "Supabase", "OpenCV"],
+    tech: ["React", "TypeScript", "FastAPI", "Python", "Supabase", "OpenCV"],
     github: "https://github.com/3zavalam/frontend",
     githubBackend: "https://github.com/3zavalam/ww-backend",
     image: winnerWayCover,
@@ -248,8 +248,8 @@ export const projects = [
       }
     ],
     longDescription: {
-      en: "A comprehensive tennis analysis platform that combines computer vision with modern web technologies. The system uses AI to detect tennis court keypoints, analyze player movements using Dynamic Time Warping (DTW) algorithms, and track ball impacts. Built with a React/TypeScript frontend for smooth user experience and a Python/Flask backend for heavy computational tasks.",
-      es: "Una plataforma integral de análisis de tenis que combina visión por computadora con tecnologías web modernas. El sistema usa IA para detectar los keypoints de la cancha, analizar el movimiento del jugador con algoritmos de Dynamic Time Warping (DTW) y rastrear los impactos de la pelota. Construida con un frontend en React/TypeScript para una experiencia fluida y un backend en Python/Flask para las tareas de cómputo pesado."
+      en: "A comprehensive tennis analysis platform that combines computer vision with modern web technologies. The system uses AI to detect tennis court keypoints, analyze player movements using Dynamic Time Warping (DTW) algorithms, and track ball impacts. Built with a React/TypeScript frontend for smooth user experience and a Python/FastAPI backend for heavy computational tasks.",
+      es: "Una plataforma integral de análisis de tenis que combina visión por computadora con tecnologías web modernas. El sistema usa IA para detectar los keypoints de la cancha, analizar el movimiento del jugador con algoritmos de Dynamic Time Warping (DTW) y rastrear los impactos de la pelota. Construida con un frontend en React/TypeScript para una experiencia fluida y un backend en Python/FastAPI para las tareas de cómputo pesado."
     },
     features: {
       en: [
