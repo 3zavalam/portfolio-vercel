@@ -12,7 +12,10 @@ import { useLanguage } from "@/lib/i18n";
 // desde ahí se descarga o se abre en pestaña. Antes el click bajaba el archivo
 // directo, sin que pudieras verlo.
 const CvDialog = ({ className }: { className?: string }) => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const isEs = lang === "es";
+  const cvUrl = isEs ? personalInfo.cvEs : personalInfo.cv;
+  const cvName = isEs ? "Emilio_Zavala_CV_2026_ES.pdf" : "Emilio_Zavala_CV_2026.pdf";
 
   const action =
     "inline-flex items-center gap-1.5 text-sm text-ink/60 transition-colors hover:text-clay";
@@ -31,7 +34,7 @@ const CvDialog = ({ className }: { className?: string }) => {
             {/* En muchos navegadores móviles el iframe no renderiza PDFs, así que
                 abrir en pestaña tiene que estar siempre a la vista. */}
             <a
-              href={personalInfo.cv}
+              href={cvUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={action}
@@ -40,8 +43,8 @@ const CvDialog = ({ className }: { className?: string }) => {
               <span className="hidden sm:inline">{t("openInTab")}</span>
             </a>
             <a
-              href={personalInfo.cv}
-              download="Emilio_Zavala_CV_2026.pdf"
+              href={cvUrl}
+              download={cvName}
               className={action}
             >
               <Download className="w-4 h-4" />
@@ -51,7 +54,7 @@ const CvDialog = ({ className }: { className?: string }) => {
         </div>
 
         <iframe
-          src={personalInfo.cv}
+          src={cvUrl}
           title={t("cv")}
           className="w-full h-full border-0 bg-muted"
         />

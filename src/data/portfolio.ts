@@ -4,6 +4,7 @@ import winnerWayCover from "@/assets/winner-way.png";
 import reservacionesCover from "@/assets/projects/reservaciones/portada_reservaciones.png";
 import reservacionesVideo from "@/assets/projects/reservaciones/reservaciones.mp4";
 import cv2026 from "@/assets/documents/cv2026.pdf";
+import cv2026Es from "@/assets/documents/cv2026_es.pdf";
 import xgModelReport from "@/assets/documents/xG model report.pdf";
 import dashboardReport from "@/assets/documents/Match Report Analysis Project.pdf";
 import clubLeonLogo from "@/assets/experience/club-leon.webp";
@@ -16,16 +17,16 @@ import riansaLogo from "@/assets/experience/riansa.png";
 export const personalInfo = {
   name: "Emilio Zavala Miceli",
   title: {
-    en: "Data Analyst & Software Developer",
-    es: "Analista de Datos y Desarrollador de Software"
+    en: "Data Analyst | Computer Systems Engineer",
+    es: "Analista de Datos | Ingeniero en Sistemas Computacionales"
   },
   description: {
-    en: "Data Analyst focused on sports analytics with Python, SQL, and Power BI expertise.",
-    es: "Analista de datos enfocado en analítica deportiva, con experiencia en Python, SQL y Power BI."
+    en: "Data Analyst with hands-on experience in data analysis, automation, and modeling using Python, SQL, and Power BI.",
+    es: "Analista de datos con experiencia práctica en análisis de datos, automatización y modelado con Python, SQL y Power BI."
   },
   about: {
-    en: "Computer Systems Engineering graduate (UDLAP, 2026) with hands-on experience building sports analytics tools and data pipelines. Developed an AI-powered tennis coaching platform and a soccer xG prediction model trained on real World Cup data (StatsBomb).",
-    es: "Egresado de Ingeniería en Sistemas Computacionales (UDLAP, 2026) con experiencia práctica construyendo herramientas de analítica deportiva y pipelines de datos. Desarrollé una plataforma de coaching de tenis con IA y un modelo de predicción de xG en fútbol entrenado con datos reales del Mundial (StatsBomb)."
+    en: "Computer Systems Engineer (UDLAP, 2026) with hands-on experience in data analysis, automation, and modeling. Built Power BI dashboards, data collection and conversion algorithms, and predictive models in Python (logistic regression, Kalman filters, OpenCV computer vision).",
+    es: "Ingeniero en Sistemas Computacionales (UDLAP, 2026) con experiencia práctica en análisis de datos, automatización y modelado. He construido dashboards en Power BI, algoritmos de conversión y recopilación de datos, y modelos predictivos en Python (regresión logística, filtros de Kalman, visión computacional con OpenCV)."
   },
   // Nota al pie de la bio, en "Sobre mí". Los títulos no se traducen: van como
   // se publicaron.
@@ -43,7 +44,8 @@ export const personalInfo = {
   linkedin: "https://www.linkedin.com/in/emilio-zavala-miceli-86595927b/",
   substack: "https://laocho.substack.com/",
   location: "México",
-  cv: cv2026
+  cv: cv2026,
+  cvEs: cv2026Es
 };
 
 export const skills = [
@@ -211,7 +213,7 @@ export const projects = [
       en: "Complete platform for tennis analysis with AI. Modern frontend and backend with keypoint detection, DTW and impact analysis.",
       es: "Plataforma completa de análisis de tenis con IA. Frontend y backend modernos con detección de keypoints, DTW y análisis de impacto."
     },
-    tech: ["React", "TypeScript", "FastAPI", "Python", "Supabase", "OpenCV"],
+    tech: ["React", "TypeScript", "Flask", "Python", "Supabase", "OpenCV"],
     github: "https://github.com/3zavalam/frontend",
     githubBackend: "https://github.com/3zavalam/ww-backend",
     image: winnerWayCover,
@@ -248,8 +250,8 @@ export const projects = [
       }
     ],
     longDescription: {
-      en: "A comprehensive tennis analysis platform that combines computer vision with modern web technologies. The system uses AI to detect tennis court keypoints, analyze player movements using Dynamic Time Warping (DTW) algorithms, and track ball impacts. Built with a React/TypeScript frontend for smooth user experience and a Python/FastAPI backend for heavy computational tasks.",
-      es: "Una plataforma integral de análisis de tenis que combina visión por computadora con tecnologías web modernas. El sistema usa IA para detectar los keypoints de la cancha, analizar el movimiento del jugador con algoritmos de Dynamic Time Warping (DTW) y rastrear los impactos de la pelota. Construida con un frontend en React/TypeScript para una experiencia fluida y un backend en Python/FastAPI para las tareas de cómputo pesado."
+      en: "A comprehensive tennis analysis platform that combines computer vision with modern web technologies. The system uses AI to detect tennis court keypoints, analyze player movements using Dynamic Time Warping (DTW) algorithms, and track ball impacts. Built with a React/TypeScript frontend for smooth user experience and a Python/Flask backend for heavy computational tasks.",
+      es: "Una plataforma integral de análisis de tenis que combina visión por computadora con tecnologías web modernas. El sistema usa IA para detectar los keypoints de la cancha, analizar el movimiento del jugador con algoritmos de Dynamic Time Warping (DTW) y rastrear los impactos de la pelota. Construida con un frontend en React/TypeScript para una experiencia fluida y un backend en Python/Flask para las tareas de cómputo pesado."
     },
     features: {
       en: [
@@ -341,25 +343,25 @@ export const experience = [
       en: "Data Analyst & Software Development Intern",
       es: "Practicante de Análisis de Datos y Desarrollo de Software"
     },
-    location: { en: "Remote", es: "Remoto" },
+    location: { en: "León, Mexico", es: "León, México" },
     period: { en: "Aug 2026 – Present", es: "Ago 2026 – Presente" },
     logo: clubLeonLogo,
     description: {
-      en: "Building automations and data analysis workflows to support football operations.",
-      es: "Desarrollando automatizaciones y análisis de datos para apoyar las operaciones del club."
+      en: "Building tools and automations for the scouting department that streamline prospect evaluation and comparison, reducing manual work for scouts.",
+      es: "Desarrollo de herramientas y automatizaciones para el área de scouting que agilizan la evaluación y comparación de prospectos, reduciendo el trabajo manual de los scouts."
     }
   },
   {
     id: 2,
     company: "Mitacs Globalink Research Internship",
-    role: { en: "Research Intern", es: "Investigador Becario" },
+    role: { en: "Research Intern", es: "Investigador" },
     location: { en: "Montreal, Canada", es: "Montreal, Canadá" },
     period: { en: "May – Aug 2026", es: "Mayo – Ago 2026" },
     logo: mitacsLogo,
     logoBg: "dark" as const,
     description: {
-      en: "Applying AI and web scraping techniques to research problems under faculty supervision at a Canadian university.",
-      es: "Aplicando técnicas de IA y web scraping a problemas de investigación bajo la supervisión de profesores en una universidad canadiense."
+      en: "Collecting data through web scraping and applying AI techniques to research problems at INRS (Montreal), under university faculty supervision. Professor's research project focused on predicting World Cup outcomes using Kalman filters (dynamic state estimation) on historical match data.",
+      es: "Recopilación de datos mediante web scraping y aplicación de técnicas de IA a problemas de investigación en INRS (Montreal), bajo la supervisión de profesores universitarios. Proyecto de investigación del profesor enfocado en predecir resultados de la Copa del Mundo mediante filtros de Kalman (estimación dinámica de estado) sobre datos históricos de partidos."
     }
   },
   {
@@ -383,50 +385,23 @@ export const experience = [
     period: { en: "Summer 2024", es: "Verano 2024" },
     logo: riansaLogo,
     description: {
-      en: "Created and managed Power BI dashboards to visualize nationwide sales data, enabling faster reporting for the commercial team. Identified top-performing products and highest-volume client locations, generating insights that directly informed sales strategy.",
-      es: "Creé y administré dashboards en Power BI para visualizar datos de ventas a nivel nacional, agilizando los reportes del equipo comercial. Identifiqué los productos con mejor desempeño y las ubicaciones de clientes con mayor volumen, generando insights que informaron directamente la estrategia de ventas."
+      en: "Created and managed Power BI dashboards to visualize nationwide sales data, enabling faster reporting for the commercial team. Identified top-performing products and highest-volume client locations (oil wells), generating insights that directly informed sales strategy.",
+      es: "Creé y administré dashboards en Power BI para visualizar datos de ventas a nivel nacional, agilizando los reportes del equipo comercial. Identifiqué los productos con mejor desempeño y las ubicaciones de clientes con mayor volumen (pozos petroleros), generando insights que informaron directamente la estrategia de ventas."
     }
   }
 ];
 
 export const education = {
   degree: "Ingeniería en Sistemas Computacionales",
-  institution: "Tecnológico Nacional de México",
-  period: "2021 - 2025",
-  status: "En curso"
+  institution: "Universidad de las Américas Puebla (UDLAP)",
+  period: "May 2026",
+  status: "Graduado"
 };
 
 export const certifications = [
-  {
-    id: 1,
-    name: "Machine Learning",
-    provider: "Coursera",
-    year: "2024",
-    skills: ["Python", "Scikit-learn", "Pandas", "NumPy"],
-    credential: "https://coursera.org/verify/example123"
-  },
-  {
-    id: 2,
-    name: "Docker & NGINX",
-    provider: "Udemy",
-    year: "2023",
-    skills: ["Docker", "NGINX", "DevOps", "Containers"],
-    credential: "https://udemy.com/certificate/example456"
-  },
-  {
-    id: 3,
-    name: "Streamlit Apps Development",
-    provider: "DataCamp",
-    year: "2023",
-    skills: ["Streamlit", "Python", "Data Viz", "Web Apps"],
-    credential: ""
-  },
-  {
-    id: 4,
-    name: "React Developer Certificate",
-    provider: "Meta",
-    year: "2023",
-    skills: ["React", "JavaScript", "Frontend"],
-    credential: "https://coursera.org/verify/meta-react"
-  }
+  { id: 1, name: "Business Metrics for Data-Driven Companies", provider: "Duke University / Coursera", year: "2026", skills: [] as string[], credential: "" },
+  { id: 2, name: "Data Manipulation with Pandas", provider: "DataCamp", year: "", skills: [] as string[], credential: "" },
+  { id: 3, name: "Joining Data with Pandas", provider: "DataCamp", year: "", skills: [] as string[], credential: "" },
+  { id: 4, name: "Data Visualization for BI", provider: "Platzi", year: "", skills: [] as string[], credential: "" },
+  { id: 5, name: "Pandas & NumPy", provider: "Platzi", year: "", skills: [] as string[], credential: "" }
 ];
