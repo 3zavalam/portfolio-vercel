@@ -16,16 +16,16 @@ import riansaLogo from "@/assets/experience/riansa.png";
 export const personalInfo = {
   name: "Emilio Zavala Miceli",
   title: {
-    en: "Computer Systems Engineering Student",
-    es: "Estudiante de Ingeniería en Sistemas Computacionales"
+    en: "Data Analyst & Software Developer",
+    es: "Analista de Datos y Desarrollador de Software"
   },
   description: {
     en: "Data Analyst focused on sports analytics with Python, SQL, and Power BI expertise.",
     es: "Analista de datos enfocado en analítica deportiva, con experiencia en Python, SQL y Power BI."
   },
   about: {
-    en: "Computer Systems Engineering student with hands-on experience building sports analytics tools and data pipelines. Developed an AI-powered tennis coaching platform and a soccer xG prediction model trained on real World Cup data (StatsBomb).",
-    es: "Estudiante de Ingeniería en Sistemas Computacionales con experiencia práctica construyendo herramientas de analítica deportiva y pipelines de datos. Desarrollé una plataforma de coaching de tenis con IA y un modelo de predicción de xG en fútbol entrenado con datos reales del Mundial (StatsBomb)."
+    en: "Computer Systems Engineering graduate (UDLAP, 2026) with hands-on experience building sports analytics tools and data pipelines. Developed an AI-powered tennis coaching platform and a soccer xG prediction model trained on real World Cup data (StatsBomb).",
+    es: "Egresado de Ingeniería en Sistemas Computacionales (UDLAP, 2026) con experiencia práctica construyendo herramientas de analítica deportiva y pipelines de datos. Desarrollé una plataforma de coaching de tenis con IA y un modelo de predicción de xG en fútbol entrenado con datos reales del Mundial (StatsBomb)."
   },
   // Nota al pie de la bio, en "Sobre mí". Los títulos no se traducen: van como
   // se publicaron.
@@ -338,8 +338,8 @@ export const experience = [
     id: 1,
     company: "Club León FC",
     role: {
-      en: "Data & Automation Intern",
-      es: "Practicante de Automatizaciones y Análisis de Datos"
+      en: "Data Analyst & Software Development Intern",
+      es: "Practicante de Análisis de Datos y Desarrollo de Software"
     },
     location: { en: "Remote", es: "Remoto" },
     period: { en: "Aug 2026 – Present", es: "Ago 2026 – Presente" },
